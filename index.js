@@ -21,7 +21,8 @@ process.argv.shift(); //removes this filename
 const args = {
     "v": 0,
     "h": 0,
-    "example": 1,
+    "example1": 1,
+    "example2": 2,
 }
 
 const cliHelp = [];
@@ -32,7 +33,8 @@ cliHelp.push("");
 cliHelp.push("---Arg Options--------------------------------------------------");
 cliHelp.push("-h                    = shows this help                         ");
 cliHelp.push("-v                    = show version                            ");
-cliHelp.push("-example {something}  = example expects 1 parameter             ");
+cliHelp.push("-example1 {something} = example1 expects 1 parameter            ");
+cliHelp.push("-example2 {1} {2}     = example2 expects 2 parametera           ");
 cliHelp.push("----------------------------------------------------------------");
 cliHelp.push("");
 
@@ -50,9 +52,11 @@ while(a < process.argv.length){
                 if(args[flag] === 0) argPackage[flag].push("");
                 else{
                     for(var n = 0; n <= args[flag]; n++){
-                        if(process.argv[a + n].indexOf('-') !== 0){
-                            argPackage[flag].push(process.argv[a + n]);
-                        }  
+                        if(typeof process.argv[a + n] !== "undefined"){
+                            if(process.argv[a + n].indexOf('-') !== 0){
+                                argPackage[flag].push(process.argv[a + n]);
+                            }  
+                        }
                     }
                     if((argPackage[flag].length) < args[flag]){
                         argErrors.push("Arg Error: '" + flag + "' expects " + args[flag] + " argument(s)");
@@ -77,9 +81,18 @@ else if(a == 0) callYourMainFunction(); //default behavour
 else{
     console.log(argPackage) //you would normally want to remove this line but it will help to understand how the arguments are organised
     //begin our functions from our flagged arguments
-    if(argPackage.v) console.log("DB-Update Version: " + version); //shows ver string (string)
+    if(argPackage.v) console.log("argv-handler Version: " + version); //shows ver string (string) (use your own app name here)
     if(argPackage.h) cliHelp.forEach((helpline) => { console.log(helpline); }); //loops through displaying our help array (string)
-    //if(argPackage.example) callYourExampleFunction();
+    if(argPackage.example1) asAnExample1(argPackage.example1[0]);
+    if(argPackage.example2) asAnExample2(argPackage.example2[0], argPackage.example2[0]);
+}
+
+function asAnExample1(param1){
+    console.log("You passed the param: " + param1);
+}
+
+function asAnExample2(param1, param2){
+    console.log("You passed the params: 1:" + param1 + " 2:" + param2);   
 }
 
 //hope this helps your projects
