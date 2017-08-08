@@ -106,7 +106,7 @@ Output:
 
 **Like it? Buy me a smile :)**
 
-acknowledge the GitHub project by clicking the Star or typing a "Thanks" in the issue labelled "Thanks"
+Acknowledge the GitHub project by clicking the Star or typing a "Thanks" in the issue labelled "Thanks"
 
 
 
