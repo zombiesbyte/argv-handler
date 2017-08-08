@@ -102,7 +102,7 @@ Output:
 
 `argPackage.example2` is a created object with an array of 2 `['chicken', 'egg']`
 
-## hope this helps your projects
+## Hope this helps your projects
 
 **Like it? Buy me a smile :)**
 
